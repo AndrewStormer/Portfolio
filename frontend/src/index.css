@@ -1,0 +1,124 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #18191f;
+  color: #ebecf4;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  padding: 5px;
+  background-color: #202128;
+  color: #ebecf4;
+}
+
+.headerContainer > a {
+  color: #ebecf4;
+}
+
+a:hover {
+  color: gold;
+}
+
+a {
+  color: #ebecf4;
+}
+
+.headerUnderline {
+  background-color: #cbccd4;
+  height: 10px;
+}
+
+.homeContainer {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 100%;
+}
+
+.aboutContainer {
+  padding: 10px;
+  margin: 10px;
+  width: fit-content;
+  max-width: 600px;
+  background-color: #202128;
+  border-radius: 5px;
+}
+
+.aboutContainer > img {
+  float: left;
+  padding: 0px 5px 5px 5px;
+  margin: 3px;
+}
+
+.courseworkContainer {
+  margin: 10px;
+  padding: 10px;
+  width: 600px;
+  background-color: #202128;
+  border-radius: 5px;
+}
+
+.courseList {
+  padding: 3px;
+  margin: 10px;
+  width: max-content;
+  background-color: #282931;
+  border-radius: 5px;
+}
+
+.courseList > h3 {
+  margin: none;
+  padding: 3px;
+  padding-bottom: none;
+}
+
+.courseList li {
+  padding: 2px;
+  margin: 2px;
+  color: #cbccd4;
+}
+
+.skillsContainer {
+  margin: 10px;
+  padding: 10px;
+  width: fit-content;
+  max-width: 600px;
+  background-color: #282931;
+  border-radius: 5px;
+}
+
+.skillsContainer > header {
+  font-size: 120%;
+  padding: 2px;
+}
+
+.projectOverviewContainer {
+  margin: 10px;
+  padding: 10px;
+  width: fit-content;
+  background-color: #202128;
+  border-radius: 5px;
+}
+
+.courseLink:hover {
+  text-decoration: underline;
+  color: gold;
+}
+
+.courseLink {
+  text-decoration: none;
+  color: #ebecf4;
+  opacity: 80%;
+}
