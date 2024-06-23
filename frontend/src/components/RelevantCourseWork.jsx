@@ -1,33 +1,23 @@
 import React, { useState, useEffect } from 'react'
-
-//TODO: Put classes in a database? Easy to add to in the future
+//import axios from 'axios'
 
 export default function RelevantCourseWork() {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState();
 
+  // useEffect(() => {
+  //   axios.get('http://localhost:3001/course')
+  //   .then((response => {
+  //     setData(response.data);
+  //   }))
+  // })
   useEffect(() => {
     fetch(`http://localhost:3001/course`)
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.error(error))
   }, [])
-  if (data != null) {
-    const rows = []
-    for (let i = 0; i < data.length; i++) {
-      rows.push(
-        <li>
-          <a
-            href={data[i].link}
-            className='courseLink'
-            target='_blank'
-            rel='noreferrer noopener'
-          >
-            {data[i].department} {data[i].number}: {data[i].name} (
-            {data[i].grade})
-          </a>
-        </li>,
-      )
-    }
+  if (data != null) { 
+    //data
     return (
       <div className='courseworkContainer'>
         <h2>Relevant Coursework:</h2>
@@ -35,7 +25,19 @@ export default function RelevantCourseWork() {
         <div className='courseList'>
           <ul>
             Course Number: Course Name (Grade)
-            {rows}
+            {data.map((d) => (
+              <li>
+                  <a
+                    href={d.link}
+                    className='courseLink'
+                    target='_blank'
+                    rel='noreferrer noopener'
+                  >
+                    {d.department} {d.number}: {d.name} ({d.grade})
+                  </a>
+                </li>
+                )
+              )}
           </ul>
         </div>
       </div>
