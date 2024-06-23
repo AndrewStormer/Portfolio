@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+//import { useParams } from 'react-router-dom'
 
 export default function Project() {
-  let params = useParams()
+  //let params = useParams()
   const [data, setData] = useState()
 
-  console.log(params.name)
   useEffect(() => {
-    fetch(`http://localhost:8000/api/project/${params.name}`)
+    fetch(`http://localhost:3001/project`)
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.error(error))
