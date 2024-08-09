@@ -3,20 +3,22 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
+  Put,
   UsePipes,
   ValidationPipe
 } from '@nestjs/common';
 import { CreateProjectDto } from './dtos/create-project.dto';
+import { UpdateProjectDto } from './dtos/update-project.dto';
 import { ProjectService } from './project.service';
-import { Project } from './schemas/project.schema';
 
 @Controller('project')
 export class ProjectController {
   constructor(private projectService: ProjectService) {}
 
   @Get()
-  async findAll(): Promise<Project[]> {
+  async getProjects() {
     const projects = await this.projectService.findAll();
     if (!projects) {
       throw new BadRequestException("Error: couldn't fetch all projects");
@@ -24,14 +26,34 @@ export class ProjectController {
     return projects;
   }
 
+  @Get(':id')
+  async getProject(@Param('id') id: number) {
+    const project = await this.projectService.getProject(id);
+    if (!project) {
+      throw new BadRequestException(`Error: couldn't fetch project at ${id}`);
+    }
+    return project;
+  }
+
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
-  async create(@Body() createProjectDto: CreateProjectDto): Promise<Project> {
+  async create(@Body() createProjectDto: CreateProjectDto) {
     const project = await this.projectService.create(createProjectDto);
     if (!project) {
       throw new BadRequestException(
         "Error: couldn't create new Project request"
       );
+    }
+
+    return project;
+  }
+
+  @Put()
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async update(@Body() updateProjectDto: UpdateProjectDto) {
+    const project = await this.projectService.update(updateProjectDto);
+    if (!project) {
+      throw new BadRequestException("Error: couldn't update Project request");
     }
 
     return project;
