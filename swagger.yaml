@@ -1,0 +1,271 @@
+openapi: 3.0.0
+paths:
+  /project:
+    get:
+      operationId: ProjectController_getProjects
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+    post:
+      operationId: ProjectController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProjectDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      operationId: ProjectController_update
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProjectDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+  /project/{id}:
+    get:
+      operationId: ProjectController_getProject
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+  /course:
+    get:
+      operationId: CourseController_getCourses
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Course"
+    post:
+      operationId: CourseController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCourseDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      operationId: CourseController_update
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCourseDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+info:
+  title: Portfolio
+  description: The API for Andrew Stormer's portfolio
+  version: "1.0"
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        github:
+          type: string
+        video:
+          type: string
+      required:
+        - id
+        - name
+        - description
+        - status
+    CreateProjectDto:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+            - development on-going
+            - development completed
+            - development discontinued
+            - development on-hold
+        github:
+          type: string
+      required:
+        - name
+        - description
+        - status
+    UpdateProjectDto:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+            - development on-going
+            - development completed
+            - development discontinued
+            - development on-hold
+        github:
+          type: string
+      required:
+        - id
+    Course:
+      type: object
+      properties:
+        id:
+          type: number
+        department:
+          type: string
+        number:
+          type: number
+        name:
+          type: string
+        grade:
+          type: string
+        link:
+          type: string
+      required:
+        - id
+        - department
+        - number
+        - name
+        - grade
+    CreateCourseDto:
+      type: object
+      properties:
+        department:
+          type: string
+          enum:
+            - CMP_SC
+            - MATH
+            - INFOTC
+            - STAT
+          default: CMP_SC
+        number:
+          type: number
+        name:
+          type: string
+        grade:
+          type: string
+          enum:
+            - A
+            - A-
+            - B+
+            - B
+            - B-
+            - C+
+            - C
+            - C-
+            - D+
+            - D
+            - D-
+          default: A
+        link:
+          type: string
+      required:
+        - department
+        - number
+        - name
+        - grade
+    UpdateCourseDto:
+      type: object
+      properties:
+        id:
+          type: number
+        department:
+          type: string
+          enum:
+            - CMP_SC
+            - MATH
+            - INFOTC
+            - STAT
+          default: CMP_SC
+        number:
+          type: number
+        name:
+          type: string
+        grade:
+          type: string
+          enum:
+            - A
+            - A-
+            - B+
+            - B
+            - B-
+            - C+
+            - C
+            - C-
+            - D+
+            - D
+            - D-
+          default: A
+        link:
+          type: string
+      required:
+        - id

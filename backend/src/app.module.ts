@@ -1,15 +1,24 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { CourseModule } from './course/course.module';
+import { Course } from './course/entitite/course.entity';
+import { Project } from './project/entities/project.entity';
 import { ProjectModule } from './project/project.module';
 
 @Module({
   imports: [
-    CourseModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://abstormer97:fpPXY0TnP3AAAIUd@cluster0.c79rivo.mongodb.net/'
-    ),
-    ProjectModule
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'readonly',
+      password: 'p$A12jp#e@249!',
+      database: 'portfolio',
+      entities: [Project, Course],
+      synchronize: true
+    }),
+    ProjectModule,
+    CourseModule
   ],
   controllers: [],
   providers: []

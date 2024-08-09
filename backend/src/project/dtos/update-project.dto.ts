@@ -8,16 +8,19 @@ enum Development {
   onhold = 'development on-hold'
 }
 
-export class CreateProjectDto {
-  @ApiProperty({ name: 'name', type: String, required: true })
+export class UpdateProjectDto {
+  @ApiProperty({ name: 'id', type: Number, required: true })
+  id: number;
+
+  @ApiPropertyOptional({ name: 'name', type: String })
   @IsString()
   name: string;
 
-  @ApiProperty({ name: 'description', type: String, required: true })
+  @ApiPropertyOptional({ name: 'description', type: String })
   @IsString()
   description: string;
 
-  @ApiProperty({ name: 'status', enum: Development, required: true })
+  @ApiPropertyOptional({ name: 'status', enum: Development })
   @IsString()
   status: string;
 
