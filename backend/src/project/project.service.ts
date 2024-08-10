@@ -27,6 +27,11 @@ export class ProjectService {
   }
 
   async update(project: UpdateProjectDto) {
-    return await this.projectRepository.save(project);
+    await this.projectRepository.update(project.id, {
+      ...project
+    });
+    return this.projectRepository.findOne({
+      where: { id: project.id }
+    });
   }
 }

@@ -19,4 +19,7 @@ export class Course {
 
   @Column()
   link?: string;
+
+  @Column()
+  priority: number;
 }

@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Model } from 'mongoose';
 import { Repository } from 'typeorm';
 import { CreateCourseDto } from './dtos/create-course.dto';
 import { UpdateCourseDto } from './dtos/update-course.dto';
@@ -15,7 +13,9 @@ export class CourseService {
   ) {}
 
   async findAll() {
-    return this.courseRepository.find();
+    return (await this.courseRepository.find()).sort(
+      (a, b) => b.priority - a.priority
+    );
   }
 
   async create(course: CreateCourseDto) {
