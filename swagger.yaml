@@ -44,7 +44,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/Project"
   /project/{id}:
     get:
       operationId: ProjectController_getProject
@@ -105,7 +105,52 @@ paths:
           content:
             application/json:
               schema:
+                $ref: "#/components/schemas/Course"
+  /skill:
+    get:
+      operationId: SkillController_getSkills
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Skill"
+    post:
+      operationId: SkillController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSkillDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
                 type: object
+    put:
+      operationId: SkillController_update
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSkillDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
 info:
   title: Portfolio
   description: The API for Andrew Stormer's portfolio
@@ -190,12 +235,15 @@ components:
           type: string
         link:
           type: string
+        priority:
+          type: number
       required:
         - id
         - department
         - number
         - name
         - grade
+        - priority
     CreateCourseDto:
       type: object
       properties:
@@ -267,5 +315,39 @@ components:
           default: A
         link:
           type: string
+      required:
+        - id
+    Skill:
+      type: object
+      properties:
+        id:
+          type: number
+        skill:
+          type: string
+        confidence:
+          type: number
+      required:
+        - id
+        - skill
+        - confidence
+    CreateSkillDto:
+      type: object
+      properties:
+        skill:
+          type: string
+        confidence:
+          type: number
+      required:
+        - skill
+        - confidence
+    UpdateSkillDto:
+      type: object
+      properties:
+        id:
+          type: number
+        skill:
+          type: string
+        confidence:
+          type: number
       required:
         - id
