@@ -19,7 +19,7 @@ export default function ProjectOverview() {
       <div className='skillsContainer'>
         <header>
           <a href='/project/Python_Library'>Python Library </a>
-        </header>
+      </header>
         A project that I developed in Python, using MySQL for the database. This
         application allows students to rent books, return books, and pay late
         fees that are automatically added to late returns.

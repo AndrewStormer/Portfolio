@@ -5,8 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #18191f;
-  color: #ebecf4;
+  
+  background-color: #171117;
+  font-size: 95%;
+  color: #e9f0e5d2;
 }
 
 code {
@@ -20,61 +22,98 @@ code {
   align-items: center;
   margin: auto;
   padding: 5px;
-  background-color: #202128;
-  color: #ebecf4;
+  background-color: #1c161f;
+  color: #cebed2;
+}
+
+.headerContainer > h1 {
+  color: #ece6d6d2;
 }
 
 .headerContainer > a {
-  color: #ebecf4;
+  color: #cebed2;
 }
 
 a:hover {
-  color: gold;
+  color: #e2fdd4bb;
 }
 
 a {
-  color: #ebecf4;
+  color: #cebed2;
 }
 
 .headerUnderline {
-  background-color: #cbccd4;
-  height: 10px;
+  background-color: #cebed2;
+  height: 3px;
 }
 
 .homeContainer {
   display: grid;
-  grid-template-columns: auto auto;
-  width: 100%;
+  width: 50%;
+  /* grid-template-columns: auto; */
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  padding: 5px;
+  /* border: 10px; */
+  background-color: #1e1822;
+  border-radius: 10px;
+}
+
+.homeContentContainer {
+  background-color: #221c26;
+  margin: auto;
+  width: 98%;
+  border-radius: 10px;
+}
+
+.homeContainer .homeContentContainer a {
+ justify-content: center;
+ margin: auto;
+ margin-bottom: 3px;
 }
 
 .aboutContainer {
-  padding: 10px;
-  margin: 10px;
-  width: fit-content;
-  max-width: 600px;
-  background-color: #202128;
-  border-radius: 5px;
+  padding-bottom: 0px;
+  padding: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin: 5px;
+  color: #cebed2;
 }
 
-.aboutContainer > img {
+.aboutContainer h2 {
+  margin-bottom: 0px;
+  padding-bottom: 0p;
+}
+
+.aboutMeContainer {
+  color: #cebed2;
+  margin-top: 0px;
+  padding-top: 0px;
+  grid-template-columns: auto auto;
+}
+
+.aboutMeContainer > img {
   float: left;
-  padding: 0px 5px 5px 5px;
+  margin-top: none;
+  padding-right: 5px;
   margin: 3px;
 }
 
 .courseworkContainer {
   margin: 10px;
+  margin-top: 0px;
   padding: 10px;
-  width: 600px;
-  background-color: #202128;
   border-radius: 5px;
+  color: #cebed2;
 }
 
 .courseList {
+  grid-template: auto auto;
   padding: 3px;
-  margin: 10px;
-  width: max-content;
-  background-color: #282931;
+  margin: 5px;
+  background-color: #2d2532;
   border-radius: 5px;
 }
 
@@ -87,16 +126,21 @@ a {
 .courseList li {
   padding: 2px;
   margin: 2px;
-  color: #cbccd4;
+  color: #cebed2;
 }
 
 .skillsContainer {
   margin: 10px;
   padding: 10px;
   width: fit-content;
-  max-width: 600px;
-  background-color: #282931;
+  background-color: #2d2532;
+  color: #cebed2;
   border-radius: 5px;
+}
+
+h2 {
+  margin-top: 0px;
+  margin-bottom: 2px;
 }
 
 .skillsContainer > header {
@@ -114,11 +158,11 @@ a {
 
 .courseLink:hover {
   text-decoration: underline;
-  color: gold;
+  color: #ddeed4;
 }
 
 .courseLink {
   text-decoration: none;
-  color: #ebecf4;
+  color: #cebed2;
   opacity: 80%;
 }
