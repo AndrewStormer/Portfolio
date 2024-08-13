@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react'
 //import axios from 'axios'
 
+export interface Course {
+  id: number,
+  department: string,
+  number: number,
+  name: string,
+  grade: string,
+  link?: string
+}
+
 export default function RelevantCourseWork() {
   const [data, setData] = useState();
 
@@ -17,7 +26,6 @@ export default function RelevantCourseWork() {
       .catch(error => console.error(error))
   }, [])
   if (data != null) { 
-    //data
     return (
       <div className='courseworkContainer'>
         <h2>Relevant Coursework:</h2>
@@ -25,7 +33,7 @@ export default function RelevantCourseWork() {
         <div className='courseList'>
           <ul>
             Course Number: Course Name (Grade)
-            {data.map((d) => (
+            {(data as [Course])?.map((d) => (
               <li>
                   <a
                     href={d.link}
@@ -40,13 +48,15 @@ export default function RelevantCourseWork() {
               )}
           </ul>
         </div>
+        <a href='../public/Andrew_Stormer_Resume_SP2024.pdf' download>
+        Download and view my resume
+        </a>
       </div>
     )
   } else {
     return (
       <div className='courseworkContainer'>
         <h2>Relevant Coursework:</h2>
-
         <div className='courseList'>
           <ul>
             Course Number: Course Name (Grade)

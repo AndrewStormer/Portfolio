@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react'
 //import { useParams } from 'react-router-dom'
 
+export interface ProjectDto {
+  id: number,
+  name: string,
+  description: string,
+  status: string,
+  github?: string,
+  video?: string
+}
+
 export default function Project() {
   //let params = useParams()
   const [data, setData] = useState()
@@ -12,7 +21,7 @@ export default function Project() {
       .catch(error => console.error(error))
   }, [])
   if (data != null) {
-    return <div>{data.name}</div>
+    return <div>{(data as ProjectDto)?.name}</div>
   } else {
     return <div></div>
   }
