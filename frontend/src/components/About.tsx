@@ -23,41 +23,25 @@ export default function About() {
     + "corporate scale API using NestJS with Typescript that manage AWS resources with IAC and the process of deploying said API. I have additional interests in "
     + "low-level systems programming and machine learning engineering with strong backgrounds in operating systems and linear algebra/statistics respectively."
 
-    if (data == null) {
-      return (
-        <div className='aboutContainer'>
-          <h2>About Me:</h2>
-          <div className='aboutMeContainer'>
+    return (
+      <div className='aboutContainer'>
+        <h2>About Me:</h2>
+        <div className='aboutMeContainer'>
           <img src={headshot} width={110} alt={'professional headshot'}></img>
-            <p>
-              {paragraph}
-            </p>
-          </div>
+          <p>
+            {paragraph}
+          </p>
+        </div>
       
-          <div className='skillsContainer'>
-            Technical Skills: <br />
+        <div className='skillsContainer'>
+          Technical Skills: <br />
+          <div className='skills'>
+              {(data as [Skill])
+                ?.map(d => d.skill)
+                .slice(0 , ((data as [Skill]).length > 15) ? 15 : undefined)
+                .join(' - ')}
+            </div>
           </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className='aboutContainer'>
-          <h2>About Me:</h2>
-          <div className='aboutMeContainer'>
-            <img src={headshot} width={110} alt={'professional headshot'}></img>
-            <p>
-              {paragraph}
-            </p>
-          </div>
-        
-          <div className='skillsContainer'>
-            Technical Skills: <br />
-            {(data as [Skill])
-              .map(d => d.skill)
-              .slice(0 , ((data as [Skill]).length > 15) ? 15 : undefined)
-              .join(' - ')}
-          </div>
-        </div>
-        );
-    }
+      </div>
+    );
 }
