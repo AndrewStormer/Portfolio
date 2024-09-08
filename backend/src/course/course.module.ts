@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { CourseController } from './course.controller';
-import { Course } from './entitite/course.entity';
+import { Course } from './entitites/course.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
