@@ -26,7 +26,7 @@ export class CreateProjectDto {
   @IsOptional()
   github?: string;
 
-  @ApiPropertyOptional({ name: 'github', type: String })
+  @ApiPropertyOptional({ name: 'video', type: String })
   @IsString()
   @IsOptional()
   video?: string;

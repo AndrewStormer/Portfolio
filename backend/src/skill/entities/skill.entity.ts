@@ -5,9 +5,9 @@ export class Skill {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   skill: string;
 
-  @Column()
+  @Column({ nullable: false })
   confidence: number; //range 1-5
 }

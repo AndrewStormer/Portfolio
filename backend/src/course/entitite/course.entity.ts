@@ -5,21 +5,21 @@ export class Course {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   department: string;
 
-  @Column()
+  @Column({ nullable: false })
   number: number;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
-  @Column()
+  @Column({ nullable: false })
   grade: string;
 
-  @Column()
+  @Column({ nullable: true })
   link?: string;
 
-  @Column()
+  @Column({ nullable: false })
   priority: number;
 }
