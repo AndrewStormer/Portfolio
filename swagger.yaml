@@ -196,6 +196,8 @@ components:
             - development on-hold
         github:
           type: string
+        video:
+          type: string
       required:
         - name
         - description

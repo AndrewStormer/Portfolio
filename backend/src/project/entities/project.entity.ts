@@ -1,3 +1,4 @@
+import { DEFAULT_METHOD_KEY } from '@nestjs/common/module-utils/constants';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
@@ -5,18 +6,18 @@ export class Project {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
-  @Column()
+  @Column({ nullable: false, type: 'varchar', length: '1024' })
   description: string;
 
-  @Column()
+  @Column({ nullable: false })
   status: string;
 
-  @Column()
+  @Column({ nullable: true })
   github?: string;
 
-  @Column()
+  @Column({ nullable: true })
   video?: string;
 }
