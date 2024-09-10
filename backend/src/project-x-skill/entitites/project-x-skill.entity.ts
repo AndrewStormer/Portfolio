@@ -15,12 +15,11 @@ export class ProjectXSkill {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
   @ManyToOne(() => Project)
   project_id: number;
 
   @Column()
-  @OneToOne(() => Skill, {
+  @ManyToOne(() => Skill, {
     eager: true,
     cascade: true
   })
