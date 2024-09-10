@@ -58,6 +58,11 @@ body {
   color: #cebed2;
 }
 
+.headerContainer > a:hover {
+  color: #ddeed4;
+}
+
+
 /* home */
 
 .homeContainer {
@@ -74,7 +79,6 @@ body {
 }
 
 .homeContentContainer {
-  background-color: #221c26;
   margin: auto;
   width: 98%;
   border-radius: 10px;
@@ -91,46 +95,52 @@ body {
 .aboutContainer {
   padding-bottom: 0px;
   padding: 5px;
-  margin-top: 0px;
-  margin-bottom: 0px;
   margin: 5px;
   color: #cebed2;
 }
 
-.aboutContainer h2 {
-  margin-bottom: 0px;
-  padding-bottom: 0p;
-}
-
 .aboutMeContainer {
   color: #cebed2;
-  margin-top: 0px;
-  padding-top: 0px;
+  background-color: #27202c;
+  margin: auto;
+  padding: 5px;
   grid-template-columns: auto auto;
+  border-radius: 10px;
 }
 
-.aboutMeContainer > img {
+.aboutMeContainer img {
   float: left;
-  margin-top: none;
-  padding-right: 5px;
-  margin: 3px;
+  margin: 10px;
+  margin-bottom: 0px;
+  width: 15%
+  /* margin: auto; */
 }
 
+.aboutMeParagraph {
+  grid-area: b;
+  margin: 10px;
+}
 /* course */
+
+.relevantCourseworkHeader {
+  color: #cebed2;
+  margin: 10px;
+  margin-bottom: 0px;
+}
 
 .courseworkContainer {
   margin: 10px;
   margin-top: 0px;
   padding: 10px;
   border-radius: 5px;
-  color: #cebed2;
+  background-color: #221c26;
 }
 
 .courseList {
-  grid-template: auto auto;
-  padding: 3px;
   margin: 5px;
-  background-color: #2d2532;
+  padding: 2px;
+  background-color: #2d2532b4;
+  color: #cebed2;
   border-radius: 5px;
 }
 
@@ -141,9 +151,8 @@ body {
 }
 
 .courseList li {
-  padding: 2px;
-  margin: 2px;
-  color: #cebed2;
+  margin: 3px;
+  margin-left: 0px;
 }
 
 
@@ -163,7 +172,7 @@ body {
   margin: 10px;
   padding: 10px;
   width: fit-content;
-  background-color: #2d2532;
+  background-color: #27202c;
   color: #d8c9db;
   border-radius: 5px;
 }

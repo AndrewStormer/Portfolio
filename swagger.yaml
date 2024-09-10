@@ -29,22 +29,6 @@ paths:
             application/json:
               schema:
                 type: object
-    put:
-      operationId: ProjectController_update
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdateProjectDto"
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Project"
   /project/{id}:
     get:
       operationId: ProjectController_getProject
@@ -54,6 +38,27 @@ paths:
           in: path
           schema:
             type: number
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+    patch:
+      operationId: ProjectController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProjectDto"
       responses:
         "200":
           description: ""
@@ -90,9 +95,15 @@ paths:
             application/json:
               schema:
                 type: object
-    put:
+  /course/{id}:
+    patch:
       operationId: CourseController_update
-      parameters: []
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
       requestBody:
         required: true
         content:
@@ -135,9 +146,15 @@ paths:
             application/json:
               schema:
                 type: object
-    put:
+  /skill/{id}:
+    patch:
       operationId: SkillController_update
-      parameters: []
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
       requestBody:
         required: true
         content:
@@ -168,6 +185,57 @@ paths:
             application/json:
               schema:
                 type: object
+  /project-reference:
+    post:
+      operationId: ProjectReferenceController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProjectReferenceDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      operationId: ProjectReferenceController_findAll
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProjectReference"
+  /project-reference/{id}:
+    patch:
+      operationId: ProjectReferenceController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProjectReferenceDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProjectReference"
 info:
   title: Portfolio
   description: The API for Andrew Stormer's portfolio
@@ -190,6 +258,22 @@ components:
         - id
         - project_id
         - skill_id
+    ProjectReference:
+      type: object
+      properties:
+        id:
+          type: number
+        project_id:
+          type: number
+        text:
+          type: string
+        link:
+          type: string
+      required:
+        - id
+        - project_id
+        - text
+        - link
     Project:
       type: object
       properties:
@@ -209,6 +293,10 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ProjectXSkill"
+        references:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProjectReference"
       required:
         - id
         - name
@@ -239,8 +327,6 @@ components:
     UpdateProjectDto:
       type: object
       properties:
-        id:
-          type: number
         name:
           type: string
         description:
@@ -256,8 +342,6 @@ components:
           type: string
         video:
           type: string
-      required:
-        - id
     Course:
       type: object
       properties:
@@ -322,8 +406,6 @@ components:
     UpdateCourseDto:
       type: object
       properties:
-        id:
-          type: number
         department:
           type: string
           enum:
@@ -353,8 +435,6 @@ components:
           default: A
         link:
           type: string
-      required:
-        - id
     Skill:
       type: object
       properties:
@@ -381,14 +461,10 @@ components:
     UpdateSkillDto:
       type: object
       properties:
-        id:
-          type: number
         skill:
           type: string
         confidence:
           type: number
-      required:
-        - id
     CreateProjectXSkillDto:
       type: object
       properties:
@@ -399,3 +475,27 @@ components:
       required:
         - skill_id
         - project_id
+    CreateProjectReferenceDto:
+      type: object
+      properties:
+        project_id:
+          type: number
+        text:
+          type: string
+        link:
+          type: string
+      required:
+        - project_id
+        - text
+        - link
+    UpdateProjectReferenceDto:
+      type: object
+      properties:
+        project_id:
+          type: number
+        text:
+          type: string
+        link:
+          type: string
+        skill_id:
+          type: number
