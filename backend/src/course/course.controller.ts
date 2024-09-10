@@ -3,8 +3,9 @@ import {
   Body,
   Controller,
   Get,
+  Param,
+  Patch,
   Post,
-  Put,
   UsePipes,
   ValidationPipe
 } from '@nestjs/common';
@@ -35,10 +36,13 @@ export class CourseController {
     return course;
   }
 
-  @Put()
+  @Patch(':id')
   @UsePipes(new ValidationPipe({ transform: true }))
-  async update(@Body() updateCourseDto: UpdateCourseDto) {
-    const course = await this.courseService.update(updateCourseDto);
+  async update(
+    @Param('id') id: number,
+    @Body() updateCourseDto: UpdateCourseDto
+  ) {
+    const course = await this.courseService.update(id, updateCourseDto);
     if (!course) {
       throw new BadRequestException("Error: couldn't update Course request");
     }

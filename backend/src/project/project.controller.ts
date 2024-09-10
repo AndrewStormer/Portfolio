@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   Param,
+  Patch,
   Post,
   Put,
   UsePipes,
@@ -48,10 +49,13 @@ export class ProjectController {
     return project;
   }
 
-  @Put()
+  @Patch(':id')
   @UsePipes(new ValidationPipe({ transform: true }))
-  async update(@Body() updateProjectDto: UpdateProjectDto) {
-    const project = await this.projectService.update(updateProjectDto);
+  async update(
+    @Param('id') id: number,
+    @Body() updateProjectDto: UpdateProjectDto
+  ) {
+    const project = await this.projectService.update(id, updateProjectDto);
     if (!project) {
       throw new BadRequestException("Error: couldn't update Project request");
     }

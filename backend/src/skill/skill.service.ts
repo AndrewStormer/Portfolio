@@ -23,12 +23,12 @@ export class SkillService {
   async create(skill: CreateSkillDto) {
     return await this.skillRepository.save(skill);
   }
-  async update(skill: UpdateSkillDto) {
-    await this.skillRepository.update(skill.id, {
+  async update(id: number, skill: UpdateSkillDto) {
+    await this.skillRepository.update(id, {
       ...skill
     });
     return this.skillRepository.findOne({
-      where: { id: skill.id }
+      where: { id }
     });
   }
 }

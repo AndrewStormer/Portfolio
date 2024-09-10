@@ -1,5 +1,6 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
+import { CreateCourseDto } from './create-course.dto';
 
 enum Department {
   CMP_SC = 'CMP_SC',
@@ -22,10 +23,7 @@ enum Grade {
   DMinus = 'D-'
 }
 
-export class UpdateCourseDto {
-  @ApiProperty({ name: 'id', type: Number, required: true })
-  id: number;
-
+export class UpdateCourseDto extends PartialType(CreateCourseDto) {
   @ApiPropertyOptional({
     name: 'department',
     enum: Department,
