@@ -8,6 +8,8 @@ import { SkillModule } from './skill/skill.module';
 import { Skill } from './skill/entities/skill.entity';
 import { ProjectXSkillModule } from './project-x-skill/project-x-skill.module';
 import { ProjectXSkill } from './project-x-skill/entitites/project-x-skill.entity';
+import { ProjectReferenceModule } from './project-reference/project-reference.module';
+import { ProjectReference } from './project-reference/entities/project-reference.entity';
 
 @Module({
   imports: [
@@ -18,13 +20,14 @@ import { ProjectXSkill } from './project-x-skill/entitites/project-x-skill.entit
       username: 'readonly',
       password: 'p$A12jp#e@249!',
       database: 'portfolio',
-      entities: [Project, Course, Skill, ProjectXSkill],
+      entities: [Project, Course, Skill, ProjectXSkill, ProjectReference],
       synchronize: true
     }),
     ProjectModule,
     CourseModule,
     SkillModule,
-    ProjectXSkillModule
+    ProjectXSkillModule,
+    ProjectReferenceModule
   ],
   controllers: [],
   providers: []

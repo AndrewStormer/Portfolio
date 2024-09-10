@@ -22,12 +22,12 @@ export class CourseService {
     return this.courseRepository.save(course);
   }
 
-  async update(courseDto: UpdateCourseDto) {
-    await this.courseRepository.update(courseDto.id, {
+  async update(id: number, courseDto: UpdateCourseDto) {
+    await this.courseRepository.update(id, {
       ...courseDto
     });
     return this.courseRepository.findOne({
-      where: { id: courseDto.id }
+      where: { id }
     });
   }
 }

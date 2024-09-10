@@ -1,4 +1,4 @@
-import { DEFAULT_METHOD_KEY } from '@nestjs/common/module-utils/constants';
+import { ProjectReference } from 'src/project-reference/entities/project-reference.entity';
 import { ProjectXSkill } from 'src/project-x-skill/entitites/project-x-skill.entity';
 import {
   Entity,
@@ -34,4 +34,11 @@ export class Project {
   })
   @JoinColumn({ name: 'project_id' })
   skills?: ProjectXSkill[];
+
+  @OneToMany(() => ProjectReference, (pr: ProjectReference) => pr.project_id, {
+    eager: true,
+    cascade: true
+  })
+  @JoinColumn({ name: 'project_id' })
+  references?: ProjectReference[];
 }

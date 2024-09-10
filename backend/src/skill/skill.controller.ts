@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Put } from '@nestjs/common';
 import { CreateSkillDto } from './dtos/create-skill.dto';
 import { UpdateSkillDto } from './dtos/update-skill.dto';
 import { SkillService } from './skill.service';
@@ -17,8 +17,8 @@ export class SkillController {
     return await this.skillService.create(skill);
   }
 
-  @Put()
-  async update(@Body() skill: UpdateSkillDto) {
-    return await this.skillService.update(skill);
+  @Patch(':id')
+  async update(@Param('id') id: number, @Body() skill: UpdateSkillDto) {
+    return await this.skillService.update(id, skill);
   }
 }

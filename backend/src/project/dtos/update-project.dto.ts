@@ -1,5 +1,6 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
+import { CreateProjectDto } from './create-project.dto';
 
 enum Development {
   ongoing = 'development on-going',
@@ -8,28 +9,28 @@ enum Development {
   onhold = 'development on-hold'
 }
 
-export class UpdateProjectDto {
-  @ApiProperty({ name: 'id', type: Number, required: true })
-  id: number;
-
-  @ApiPropertyOptional({ name: 'name', type: String })
+export class UpdateProjectDto extends PartialType(CreateProjectDto) {
+  @ApiPropertyOptional({ name: 'name', type: String, required: false })
   @IsString()
-  name: string;
+  @IsOptional()
+  name?: string;
 
-  @ApiPropertyOptional({ name: 'description', type: String })
+  @ApiPropertyOptional({ name: 'description', type: String, required: false })
   @IsString()
-  description: string;
+  @IsOptional()
+  description?: string;
 
-  @ApiPropertyOptional({ name: 'status', enum: Development })
+  @ApiPropertyOptional({ name: 'status', enum: Development, required: false })
   @IsString()
-  status: string;
+  @IsOptional()
+  status?: string;
 
   @ApiPropertyOptional({ name: 'github', type: String })
   @IsString()
   @IsOptional()
   github?: string;
 
-  @ApiPropertyOptional({ name: 'github', type: String })
+  @ApiPropertyOptional({ name: 'video', type: String })
   @IsString()
   @IsOptional()
   video?: string;
