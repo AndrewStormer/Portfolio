@@ -151,6 +151,23 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Skill"
+  /project-x-skill:
+    post:
+      operationId: ProjectXSkillController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProjectXSkillDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
 info:
   title: Portfolio
   description: The API for Andrew Stormer's portfolio
@@ -160,6 +177,19 @@ tags: []
 servers: []
 components:
   schemas:
+    ProjectXSkill:
+      type: object
+      properties:
+        id:
+          type: number
+        project_id:
+          type: number
+        skill_id:
+          type: number
+      required:
+        - id
+        - project_id
+        - skill_id
     Project:
       type: object
       properties:
@@ -175,6 +205,10 @@ components:
           type: string
         video:
           type: string
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/ProjectXSkill"
       required:
         - id
         - name
@@ -219,6 +253,8 @@ components:
             - development discontinued
             - development on-hold
         github:
+          type: string
+        video:
           type: string
       required:
         - id
@@ -353,3 +389,13 @@ components:
           type: number
       required:
         - id
+    CreateProjectXSkillDto:
+      type: object
+      properties:
+        skill_id:
+          type: number
+        project_id:
+          type: number
+      required:
+        - skill_id
+        - project_id
