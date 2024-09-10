@@ -3,6 +3,12 @@ import Project from "../components/Project";
 import Button from 'react-bootstrap/Button';
 
 
+export interface ReferenceDto {
+    id: number,
+    text: string,
+    link: string
+}
+
 export interface SkillDto {
     id: number,
     skill: string,
@@ -21,8 +27,9 @@ export interface ProjectDto {
     description: string,
     status: string,
     github?: string,
-    video?: string
-    skills: ProjectXSkillDto[]
+    video?: string,
+    skills: ProjectXSkillDto[],
+    references: ReferenceDto[]
   }
   
   export default function Projects() {

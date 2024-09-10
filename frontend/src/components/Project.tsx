@@ -18,6 +18,10 @@ export default function Project({project}) {
       </div>
       <p>
         {project?.description}
+        <br />
+        {project?.references?.map((r) => (
+          <li><a href={r.link} >{r.text}</a></li>
+        ))}
       </p>
       <div className='projectSkillsContainer'>
         <h4>Skills used/gained during this project:</h4>

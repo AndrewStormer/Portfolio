@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from 'react'
-//import axios from 'axios'
-
-// import pdf from '../../public/Andrew_Stormer_Resume_FL2024'
-const pdf = require('..//Andrew_Stormer_Resume_FL2024.pdf');
-
 
 export interface Course {
   id: number,
@@ -24,8 +19,9 @@ export default function RelevantCourseWork() {
   }, [])
 
   return (
+    <div>
+    <h2 className='relevantCourseworkHeader'>Relevant Coursework:</h2>
     <div className='courseworkContainer'>
-      <h2>Relevant Coursework:</h2>
       <div className='courseList'>
         <ul>
           Course Number: Course Name (Grade)
@@ -44,9 +40,7 @@ export default function RelevantCourseWork() {
             )}
         </ul>
       </div>
-      <a href={pdf} download>
-      Download and view my resume
-      </a>
+    </div>
     </div>
   )
 }
