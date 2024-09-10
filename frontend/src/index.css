@@ -3,20 +3,39 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    background-color: #171117;
+    font-size: 95%;
+    color: #e9f0e5d2;
+  }
   
-  background-color: #171117;
-  font-size: 95%;
-  color: #e9f0e5d2;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+  }
+
+
+  /* global */
+
+  a:hover {
+    color: #e2fdd4bb;
+  }
+  
+  a {
+    color: #cebed2;
+  }
+
+  h2 {
+    margin-top: 0px;
+    margin-bottom: 2px;
+  }
+  
+/* header */
 
 .headerContainer {
+  font-size: 105%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -24,6 +43,11 @@ code {
   padding: 5px;
   background-color: #1c161f;
   color: #cebed2;
+}
+
+.headerUnderline {
+  background-color: #cebed2;
+  height: 3px;
 }
 
 .headerContainer > h1 {
@@ -34,18 +58,7 @@ code {
   color: #cebed2;
 }
 
-a:hover {
-  color: #e2fdd4bb;
-}
-
-a {
-  color: #cebed2;
-}
-
-.headerUnderline {
-  background-color: #cebed2;
-  height: 3px;
-}
+/* home */
 
 .homeContainer {
   display: grid;
@@ -72,6 +85,8 @@ a {
  margin: auto;
  margin-bottom: 3px;
 }
+
+/* about */
 
 .aboutContainer {
   padding-bottom: 0px;
@@ -101,6 +116,8 @@ a {
   margin: 3px;
 }
 
+/* course */
+
 .courseworkContainer {
   margin: 10px;
   margin-top: 0px;
@@ -129,32 +146,6 @@ a {
   color: #cebed2;
 }
 
-.skillsContainer {
-  margin: 10px;
-  padding: 10px;
-  width: fit-content;
-  background-color: #2d2532;
-  color: #cebed2;
-  border-radius: 5px;
-}
-
-h2 {
-  margin-top: 0px;
-  margin-bottom: 2px;
-}
-
-.skillsContainer > header {
-  font-size: 120%;
-  padding: 2px;
-}
-
-.projectOverviewContainer {
-  margin: 10px;
-  padding: 10px;
-  width: fit-content;
-  background-color: #202128;
-  border-radius: 5px;
-}
 
 .courseLink:hover {
   text-decoration: underline;
@@ -165,4 +156,163 @@ h2 {
   text-decoration: none;
   color: #cebed2;
   opacity: 80%;
+}
+/* skills */
+
+.skillsContainer {
+  margin: 10px;
+  padding: 10px;
+  width: fit-content;
+  background-color: #2d2532;
+  color: #d8c9db;
+  border-radius: 5px;
+}
+
+.skills {
+  color: #cebed2d1;
+}
+
+/* project */
+
+.projectContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-areas: 
+  "a a a a b b"
+  "a a a a b b"
+  "c c c c c c"
+  "c c c c c c"
+  "c c c c c c"
+  "d d d d d d"
+  "e e e e e e"
+  "e e e e e e";
+
+  background-color: #1e1822;
+  color: #cebed2;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 40%
+}
+
+.projectContainer > p {
+  grid-area: c;
+  background-color: #251e2a;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;;
+}
+
+.projectName {
+  grid-area: a;
+  grid-row: 1 / 2;
+  background-color: #251e2a;
+  color: #cebed2ae;
+  margin-bottom: 0px;
+  margin-right: 5px;
+  margin: 5px;
+  padding-right: 0px;
+  padding: 12px;
+  border-radius: 10px;
+  width: auto;
+  height: auto;
+}
+
+.projectName > h1 {
+  color: #cebed2;
+  margin-bottom: 0;
+}
+
+.projectSkillsContainer {
+  grid-area: d;
+  background-color: #251e2a;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.projectSkillsGridContainer {
+  background-color: #2e2534;
+  display: grid;
+  grid-template-columns: auto auto;
+  border-radius: 10px;
+}
+
+.projectSkillsContainer h4 {
+  margin: 0px;
+  margin-bottom: 5px;
+  padding: 0px;
+}
+
+.githubContainer {
+  grid-area: b; 
+  justify-self: center;
+  background-color: #251e2a;
+  width: fit-content;
+  margin: 4px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.githubContainer a img {
+  display: block;
+  grid-row: 1 / 2;
+  opacity: 50%;
+  max-width: 50%;
+  margin: auto;
+}
+
+.githubContainer a img:hover {
+  filter: invert(100%);
+}
+
+.projectButtonGridContainer {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.projectButton {
+  background-color: #1e1822;
+  color:#cbaae1d0;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 12px;
+  margin: auto;
+  border: 1px solid  #cebed232;
+  text-decoration: none;
+}
+
+.projectButton:hover {
+  background-color: #2e2534;
+}
+
+.leftProjectButtonContainer {
+  margin-left: 15px;
+  margin: auto;
+  padding: 10px;
+}
+
+.rightProjectButtonContainer {
+  margin-right: 15px;
+  margin: auto;
+  padding: 10px;
+}
+
+.projectVideoContainer {
+  grid-area: e;
+  background-color: #251e2a;
+  margin-bottom: 0px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.projectVideoContainer img {
+  margin: auto;
+  padding: 10px;
+  max-width: 96%;
+  height: auto;
 }
