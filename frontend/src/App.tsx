@@ -2,6 +2,8 @@ import Project from './components/Project'
 import Projects from './pages/Projects'
 import Home from './pages/Home'
 
+const backgroundImage = require('./background.png')
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import './App.css'
@@ -14,7 +16,7 @@ function App() {
           path='/'
           element={
             <div style={{
-              backgroundImage: 'repeating-linear-gradient(#201825, #131117)',//`url(${backgroundImage})`,
+              backgroundImage: `repeating-linear-gradient(#201825, #131117), url(${backgroundImage})`,//`url(${backgroundImage})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               imageRendering: 'crisp-edges'

@@ -47,24 +47,6 @@ export interface ProjectDto {
     const projects: ProjectDto[] = (data as [ProjectDto]);
     console.log(projects);
 
-    const handleLeftClick = (e) => {
-        e.preventDefault();
-        if (currentProject == 0) {
-            setCurrentProject(projects.length - 1);
-        } else {
-            setCurrentProject(currentProject - 1);
-        }    
-    }
-
-    const handleRightClick = (e) => {
-        e.preventDefault();
-        if (currentProject == projects.length - 1) {
-            setCurrentProject(0);
-        } else {
-            setCurrentProject(currentProject + 1);
-        }    
-    }
-
     if (data == undefined || data == null) {
         return (
             <div>
@@ -74,28 +56,15 @@ export interface ProjectDto {
     }
     return (  
         <div className="projectButtonGridContainer">
-            <div className='leftProjectButtonContainer'>
-                <Button 
-                  variant="outline-info" 
-                  type="button" 
-                  onClick={handleLeftClick}
-                  className='projectButton' 
-                >{'<'}</Button>
-            </div>
-            <div>
-                <div className="projectContainter">
-                    <Project project={projects?.[currentProject]} />
-                </div>
-            </div>
-            <div className='leftProjectButtonContainer'>
-                <Button 
-                variant="outline-info" 
-                type="button" 
-                onClick={handleRightClick}
-                className='projectButton' 
-                >{'>'}</Button>
-            </div>
+            <h1 id="section2" className='pt-24 md:pt-40 px-4 m-auto text-4xl text-bgpurple-10 font-semibold font-serif text-center'>Projects</h1>
 
+            <div>
+                { projects?.map((project) => (
+                    <div className="pb-4">
+                        <Project project={project} />
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
