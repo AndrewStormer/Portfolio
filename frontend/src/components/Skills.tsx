@@ -17,14 +17,16 @@ export default function Skills() {
     }, [])
 
   return (
-    <div className='skillsContainer'>
-          Technical Skills: <br />
-          <div className='skills'>
-              {(data as [Skill])
-                ?.map(d => d.skill)
-                .slice(0 , ((data as [Skill]).length > 15) ? 15 : undefined)
-                .join(' - ')}
-            </div>
-          </div>
+    <div className='py-4 pb-12 mb-8'>
+      <h2 className='pt-4 p-4 text-2xl text-bgpurple-50 font-semibold font-serif'>Technical Skills</h2>
+      <div className='grid justify-center'>
+        <div className='text-lg text-pretty text-bgpurple-10/60 text-center max-w-3xl grid justify-center'>
+            {(data as [Skill])
+              ?.map(d => d.skill)
+              .slice(0 , ((data as [Skill]).length > 16) ? 16 : undefined)
+              .join(' - ')}
+        </div>
+      </div>
+    </div>
   )
 }

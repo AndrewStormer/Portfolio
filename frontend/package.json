@@ -6,17 +6,17 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.14.15",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "axios": "^1.7.3",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.17.10",
+    "@types/react": "^18.3.17",
+    "@types/react-dom": "^18.3.5",
+    "axios": "^1.7.9",
     "react": "^18.3.1",
-    "react-bootstrap": "^2.10.4",
+    "react-bootstrap": "^2.10.7",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.0",
+    "react-router-dom": "^6.28.0",
     "react-scripts": "5.0.1",
-    "typescript": "^5.5.4",
+    "typescript": "^5.7.2",
     "web-vitals": "^2.1.4"
   },
   "overrides": {
@@ -39,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }
