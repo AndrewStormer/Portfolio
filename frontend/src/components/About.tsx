@@ -1,7 +1,6 @@
 import RelevantCourseWork from "./RelevantCourseWork";
 import Skills from "./Skills";
 
-const headshot = require('../headshot.jpg');
 
 export default function About() {
 

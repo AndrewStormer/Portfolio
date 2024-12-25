@@ -1,4 +1,3 @@
-import React from 'react'
 const GitHub = require('../github_logo.png')
 const LinkedIn = require('../linkedin_logo_header.png')
 

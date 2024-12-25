@@ -1,6 +1,5 @@
 import { ProjectXSkillDto } from "../pages/Projects";
 
-const github = require('../github_logo.png');
 
 export default function Project({project}) {
   const video = require(`../${project?.video}`)
