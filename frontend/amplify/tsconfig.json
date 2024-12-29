@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "es2022",
+    "module": "Node16",
     "resolveJsonModule": true,
     "moduleResolution": "node16",
     "esModuleInterop": true,
@@ -13,5 +13,11 @@
         "../.amplify/generated/*"
       ]
     }
-  }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": 
+  [
+    "node_modules",
+    "amplify/backend/function/<function>/src/"
+  ]
 }
