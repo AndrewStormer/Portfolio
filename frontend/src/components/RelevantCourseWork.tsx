@@ -8,10 +8,12 @@ async function getCourses() {
       apiName: 'myHttpApi',
       path: 'course' 
     });
-    const response = await httpOperation.response;
+    const { body } = await httpOperation.response;
     console.log('GET call succeeded: ', response);
+
+    return body;
   } catch (error) {
-    console.log('GET call failed: ', JSON.parse(error.response.body));
+    console.log('GET call failed: ', JSON.parse(error.response?.body));
   }
 }
 
@@ -27,7 +29,10 @@ export interface Course {
 export default function RelevantCourseWork() {
   const [data, setData] = useState();
   useEffect(() => {
-    getCourses()
+    fetch(`https://fix-amplfiy.dq50hk79mboni.amplifyapp.com/course`)
+      .then(response => response.json())
+      .then(json => setData(json))
+      .catch(error => console.error(error))
   }, [])
 
   return (
