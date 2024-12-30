@@ -12,7 +12,7 @@ export interface Course {
 export default function RelevantCourseWork() {
   const [data, setData] = useState();
   useEffect(() => {
-    fetch(`http://localhost:3001/course`)
+    fetch(`https://fix-amplfiy.dq50hk79mboni.amplifyapp.com/course`)
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.error(error))
