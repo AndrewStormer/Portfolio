@@ -108,7 +108,7 @@
     "jsx": "react-jsx",
     
     "exclude": [
-      "./amplify"
+      "./amplify/backend"
     ]
   }
 }
