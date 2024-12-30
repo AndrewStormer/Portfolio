@@ -38,23 +38,6 @@ const lambdaIntegration = new LambdaIntegration(
   backend.nestApi.resources.lambda
 );
 
-// create a new resource path with IAM authorization
-const coursePath = myRestApi.root.addResource("course", {
-  defaultMethodOptions: {
-    authorizationType: AuthorizationType.IAM,
-  },
-});
-
-// add methods you would like to create to the resource path
-coursePath.addMethod("GET", lambdaIntegration);
-coursePath.addMethod("POST", lambdaIntegration);
-coursePath.addMethod("PUT", lambdaIntegration);
-
-// add a proxy resource path to the API
-coursePath.addProxy({
-  anyMethod: true,
-  defaultIntegration: lambdaIntegration,
-});
 
 onst projectPath = myRestApi.root.addResource("project", {
   defaultMethodOptions: {
@@ -69,6 +52,24 @@ projectPath.addMethod("PUT", lambdaIntegration);
 
 // add a proxy resource path to the API
 projectPath.addProxy({
+  anyMethod: true,
+  defaultIntegration: lambdaIntegration,
+});
+
+// create a new resource path with IAM authorization
+const coursePath = myRestApi.root.addResource("course", {
+  defaultMethodOptions: {
+    authorizationType: AuthorizationType.IAM,
+  },
+});
+
+// add methods you would like to create to the resource path
+coursePath.addMethod("GET", lambdaIntegration);
+coursePath.addMethod("POST", lambdaIntegration);
+coursePath.addMethod("PUT", lambdaIntegration);
+
+// add a proxy resource path to the API
+coursePath.addProxy({
   anyMethod: true,
   defaultIntegration: lambdaIntegration,
 });
