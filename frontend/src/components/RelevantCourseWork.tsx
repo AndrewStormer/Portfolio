@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { get } from 'aws-amplify/api';
+import { ApiError, get } from 'aws-amplify/api';
 
 async function getCourses() {
   try {
