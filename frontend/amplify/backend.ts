@@ -1,119 +1,104 @@
 import { defineBackend } from "@aws-amplify/backend";
 import { Stack } from "aws-cdk-lib";
 import {
-  CorsHttpMethod,
-  HttpApi,
-  HttpMethod,
-} from "aws-cdk-lib/aws-apigatewayv2";
-import {
-  HttpIamAuthorizer,
-  HttpUserPoolAuthorizer,
-} from "aws-cdk-lib/aws-apigatewayv2-authorizers";
-import { HttpLambdaIntegration } from "aws-cdk-lib/aws-apigatewayv2-integrations";
+  AuthorizationType,
+  CognitoUserPoolsAuthorizer,
+  Cors,
+  LambdaIntegration,
+  RestApi,
+} from "aws-cdk-lib/aws-apigateway";
 import { Policy, PolicyStatement } from "aws-cdk-lib/aws-iam";
-import { serverApi } from "./functions/api-server/resource";
+import { nestApi } from "./functions/api-function/resource";
+import { auth } from "./auth/resource";
 
 const backend = defineBackend({
-  serverApi,
+  auth,
+  nestApi,
 });
 
 // create a new API stack
 const apiStack = backend.createStack("api-stack");
 
-// create a IAM authorizer
-const iamAuthorizer = new HttpIamAuthorizer();
-
-// create a User Pool authorizer
-const userPoolAuthorizer = new HttpUserPoolAuthorizer(
-  "userPoolAuth",
-  backend.auth.resources.userPool,
-  {
-    userPoolClients: [backend.auth.resources.userPoolClient],
-  }
-);
-
-// create a new HTTP Lambda integration
-const httpLambdaIntegration = new HttpLambdaIntegration(
-  "LambdaIntegration",
-  backend.serverApi.resources.lambda
-);
-
-// create a new HTTP API with IAM as default authorizer
-const httpApi = new HttpApi(apiStack, "HttpApi", {
-  apiName: "myHttpApi",
-  corsPreflight: {
-    // Modify the CORS settings below to match your specific requirements
-    allowMethods: [
-      CorsHttpMethod.GET,
-      CorsHttpMethod.POST,
-      CorsHttpMethod.PUT,
-      CorsHttpMethod.DELETE,
-    ],
-    // Restrict this to domains you trust
-    allowOrigins: ["*"],
-    // Specify only the headers you need to allow
-    allowHeaders: ["*"],
+// create a new REST API
+const myRestApi = new RestApi(apiStack, "RestApi", {
+  restApiName: "myRestApi",
+  deploy: true,
+  deployOptions: {
+    stageName: "dev",
   },
-  createDefaultStage: true,
+  defaultCorsPreflightOptions: {
+    allowOrigins: Cors.ALL_ORIGINS, // Restrict this to domains you trust
+    allowMethods: Cors.ALL_METHODS, // Specify only the methods you need to allow
+    allowHeaders: Cors.DEFAULT_HEADERS, // Specify only the headers you need to allow
+  },
 });
 
-// add routes to the API with a IAM authorizer and different methods
-httpApi.addRoutes({
-  path: "/course",
-  methods: [HttpMethod.GET, HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE],
-  integration: httpLambdaIntegration,
-  authorizer: iamAuthorizer,
+// create a new Lambda integration
+const lambdaIntegration = new LambdaIntegration(
+  backend.nestApi.resources.lambda
+);
+
+// create a new resource path with IAM authorization
+const coursePath = myRestApi.root.addResource("course", {
+  defaultMethodOptions: {
+    authorizationType: AuthorizationType.IAM,
+  },
 });
+
+// add methods you would like to create to the resource path
+coursePath.addMethod("GET", lambdaIntegration);
+coursePath.addMethod("POST", lambdaIntegration);
+coursePath.addMethod("DELETE", lambdaIntegration);
+coursePath.addMethod("PUT", lambdaIntegration);
 
 // add a proxy resource path to the API
-httpApi.addRoutes({
-  path: "/course/{proxy+}",
-  methods: [HttpMethod.ANY],
-  integration: httpLambdaIntegration,
-  authorizer: iamAuthorizer,
+coursePath.addProxy({
+  anyMethod: true,
+  defaultIntegration: lambdaIntegration,
 });
 
-// add the options method to the route
-httpApi.addRoutes({
-  path: "/course/{proxy+}",
-  methods: [HttpMethod.OPTIONS],
-  integration: httpLambdaIntegration,
+// create a new Cognito User Pools authorizer
+const cognitoAuth = new CognitoUserPoolsAuthorizer(apiStack, "CognitoAuth", {
+  cognitoUserPools: [backend.auth.resources.userPool],
 });
 
-// add route to the API with a User Pool authorizer
-httpApi.addRoutes({
-  path: "/cognito-auth-path",
-  methods: [HttpMethod.GET],
-  integration: httpLambdaIntegration,
-  authorizer: userPoolAuthorizer,
+// create a new resource path with Cognito authorization
+const booksPath = myRestApi.root.addResource("cognito-auth-path");
+booksPath.addMethod("GET", lambdaIntegration, {
+  authorizationType: AuthorizationType.COGNITO,
+  authorizer: cognitoAuth,
 });
 
 // create a new IAM policy to allow Invoke access to the API
-const apiPolicy = new Policy(apiStack, "ApiPolicy", {
+const apiRestPolicy = new Policy(apiStack, "RestApiPolicy", {
   statements: [
     new PolicyStatement({
       actions: ["execute-api:Invoke"],
       resources: [
-        `${httpApi.arnForExecuteApi("*", "/course")}`,
-        `${httpApi.arnForExecuteApi("*", "/course/*")}`,
-        `${httpApi.arnForExecuteApi("*", "/cognito-auth-path")}`,
+        `${myRestApi.arnForExecuteApi("*", "/course", "dev")}`,
+        `${myRestApi.arnForExecuteApi("*", "/course/*", "dev")}`,
+        `${myRestApi.arnForExecuteApi("*", "/cognito-auth-path", "dev")}`,
       ],
     }),
   ],
 });
 
 // attach the policy to the authenticated and unauthenticated IAM roles
-backend.auth.resources.authenticatedUserIamRole.attachInlinePolicy(apiPolicy);
-backend.auth.resources.unauthenticatedUserIamRole.attachInlinePolicy(apiPolicy);
+backend.auth.resources.authenticatedUserIamRole.attachInlinePolicy(
+  apiRestPolicy
+);
+backend.auth.resources.unauthenticatedUserIamRole.attachInlinePolicy(
+  apiRestPolicy
+);
 
 // add outputs to the configuration file
 backend.addOutput({
   custom: {
     API: {
-      [httpApi.httpApiName!]: {
-        endpoint: httpApi.url,
-        region: Stack.of(httpApi).region,
-        apiName: httpApi.httpApiName,
+      [myRestApi.restApiName]: {
+        endpoint: myRestApi.url,
+        region: Stack.of(myRestApi).region,
+        apiName: myRestApi.restApiName,
       },
     },
   },
