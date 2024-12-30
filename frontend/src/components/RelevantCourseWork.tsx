@@ -1,5 +1,20 @@
 import { useState, useEffect } from 'react'
 
+import { get } from 'aws-amplify/api';
+
+async function getCourses() {
+  try {
+    const httpOperation = get({ 
+      apiName: 'myHttpApi',
+      path: 'course' 
+    });
+    const response = await httpOperation.response;
+    console.log('GET call succeeded: ', response);
+  } catch (error) {
+    console.log('GET call failed: ', JSON.parse(error.response.body));
+  }
+}
+
 export interface Course {
   id: number,
   department: string,
