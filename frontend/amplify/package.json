@@ -1,6 +1,3 @@
 {
-  "type": "module",
-  "scripts": {
-    "amplify:<function_name>": "tsc -p ./tsconfig-amplify.json"
-  }
+  "type": "module"
 }
