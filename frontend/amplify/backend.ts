@@ -59,7 +59,6 @@ httpApi.addRoutes({
   path: "/course",
   methods: [HttpMethod.GET, HttpMethod.POST],
   integration: httpLambdaIntegration,
-  authorizer: iamAuthorizer,
 });
 
 // add a proxy resource path to the API
