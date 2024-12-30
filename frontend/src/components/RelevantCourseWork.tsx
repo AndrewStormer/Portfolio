@@ -9,11 +9,23 @@ async function getCourses() {
       path: 'course' 
     });
     const { body } = await httpOperation.response;
+    console.log(body)
     console.log('GET call succeeded: ', response);
 
     return body;
   } catch (error) {
-    console.log('GET call failed: ', JSON.parse(error.response?.body));
+    if (error instanceof ApiError) {
+      if (error.response) {
+        const { 
+          statusCode, 
+          headers, 
+          body 
+        } = error.response;
+        console.error(`Received ${statusCode} error response with payload: ${body}`);
+      }
+    } else {
+      console.log('GET call failed: ', JSON.parse(error.response?.body));
+    }
   }
 }
 
