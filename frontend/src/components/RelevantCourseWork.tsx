@@ -28,8 +28,9 @@ export interface Course {
 
 export default function RelevantCourseWork() {
   const [data, setData] = useState();
+  
   useEffect(() => {
-    fetch(`https://fix-amplfiy.dq50hk79mboni.amplifyapp.com/course`)
+    getCourses()
       .then(response => response.json())
       .then(json => setData(json))
       .catch(error => console.error(error))
