@@ -37,7 +37,7 @@ export interface ProjectDto {
 
     
     useEffect(() => {
-      fetch(`http://localhost:3001/project`)
+      fetch(`https://fix-amplfiy.dq50hk79mboni.amplifyapp.com/project`)
         .then(response => response.json())
         .then(json => setData(json))
         .catch(error => console.error(error))
