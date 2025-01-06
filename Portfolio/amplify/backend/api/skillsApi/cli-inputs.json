@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/skill": {
+      "name": "/skill",
+      "lambdaFunction": "nestBackendFunction",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
