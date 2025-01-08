@@ -12,7 +12,7 @@ export default function Home() {  return (
         <Header />
       </div>
       <Greeting />
-      <div id="section1" >
+      <div id="about" >
         <About />
       </div>
       <Projects />

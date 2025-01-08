@@ -12,7 +12,7 @@ async function getProjects() {
     });
     const {body} = await restOperation.response;
     console.log('GET call succeeded: ', body);
-    return await body.json();
+    return await body?.json();
   } catch (e) {
     console.log('GET call failed: ', JSON.parse(e.response.body));
   }
@@ -69,7 +69,7 @@ export interface ProjectDto {
     }
     return (  
         <div>
-            <h1 id="section2" className='pt-24 md:pt-40 px-4 m-auto text-4xl text-bgpurple-10 font-semibold font-serif text-center'>Projects</h1>
+            <h1 id="projects" className='pt-24 md:pt-40 px-4 m-auto text-4xl text-bgpurple-10 font-semibold font-serif text-center'>Projects</h1>
 
             <div>
                 { projects?.map((project) => (

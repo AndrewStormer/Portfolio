@@ -11,7 +11,7 @@ async function getCourses() {
     });
     const {body} = await restOperation.response;
     console.log('GET call succeeded: ', body);
-    return await body.json();
+    return await body?.json();
   } catch (e) {
     console.log('GET call failed: ', JSON.parse(e.response.body));
   }

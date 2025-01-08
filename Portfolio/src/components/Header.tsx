@@ -15,13 +15,13 @@ export default function Header() {
             Home
           </a>{' '}
           <a
-            href='#section1'
+            href='#about'
             className='p-2 md:px-6 md:mx-4 text-md flex-initial text-bgpurple-50 hover:text-bgpurple-10/90 hover:font-bold hover:bg-bgpurple-125 rounded-2xl transition-all duration-300'
           >
             About
           </a>{' '}
           <a
-            href='#section2'
+            href='#projects'
             className='p-2 md:px-6 md:mx-4 text-md flex-initial text-bgpurple-50 hover:text-bgpurple-10/90 hover:font-bold hover:bg-bgpurple-125 rounded-2xl'
           >
             Projects
