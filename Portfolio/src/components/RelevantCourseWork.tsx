@@ -43,7 +43,7 @@ export default function RelevantCourseWork() {
           <h2 className='pt-0 p-4 text-xl'>Course Number: Course Name (Grade)</h2>
           <ul className="list-disc h-64 px-2 bg-bgpurple-800/70 rounded-2xl overflow-y-scroll overscroll-contain border-5 border-bgpurple-100/30">
             {((data as any) as [Course])?.map((d) => (
-              <li className='mx-12 m-2 list-inside'>
+              <li className='mx-4 md:mx-12 m-2 list-inside'>
                   <a
                     href={d.link}
                     className='underline text-lg text-bgpurple-10/80 tracking-wide hover:text-bgpurple-10/90'

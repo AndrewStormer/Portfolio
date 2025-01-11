@@ -23,7 +23,7 @@ export default function About() {
 
         <div className='clearfix py-4 pb-12 mb-8'>
 
-          <div className='px-8 pb-4 md:pb-8'>
+          <div className='px-4 md:px-8 pb-4 md:pb-8'>
             <p className='text-content indent-8 text-pretty text-center text-lg text-bgpurple-10/60'>
               {paragraph}
             </p>

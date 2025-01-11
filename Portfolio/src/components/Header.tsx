@@ -6,7 +6,7 @@ export default function Header() {
 
   return (
     <>
-      <div className='grid grid-cols-2 gap-4 subpixel-antialiased font-sans font-semibold justify-stretch items-center md:w-screen max-h-40 min-h-16 border-b-5 border-bgpurple-100/20 bg-bgpurple-150'>
+      <div className='grid grid-cols-2 gap-4 subpixel-antialiased font-sans font-semibold justify-stretch items-center w-screen max-h-40 min-h-16 border-b-5 border-bgpurple-100/20 bg-bgpurple-150'>
         <div className='pl-4 basis-1/2 col-span-1 flex'>
           <a
             href='#top'
