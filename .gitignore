@@ -22,3 +22,5 @@ amplifytools.xcconfig
 
 .DS_Store
 .env
+
+**/**/team-provider-info.json

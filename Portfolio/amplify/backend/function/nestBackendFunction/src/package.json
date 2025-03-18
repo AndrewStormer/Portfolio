@@ -20,11 +20,13 @@
     "amplify:nestFunction": "tsc -p ./tsconfig-amplify.json"
   },
   "dependencies": {
+    "@nestjs/config": "^4.0.1",
     "@nestjs/core": "^10.4.15",
     "@nestjs/platform-express": "^10.4.15",
     "@nestjs/swagger": "^8.1.0",
     "@nestjs/testing": "^10.4.15",
     "@nestjs/typeorm": "^10.0.2",
+    "@types/aws-serverless-express": "^3.3.10",
     "@vendia/serverless-express": "^4.12.6",
     "aws-lambda": "^1.0.7",
     "aws-serverless-express": "^3.4.0",
@@ -32,16 +34,17 @@
     "bootstrap": "^5.3.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "dotenv": "^16.4.7",
     "express": "^4.15.2",
     "mysql2": "^3.11.5",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "typeorm": "^0.3.20",
     "typescript": "^5.7.2",
-    "@types/aws-serverless-express": "^3.3.10",
     "validator": "^13.12.0"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.92"
+    "@types/aws-lambda": "^8.10.92",
+    "@types/node": "^22.13.10"
   }
 }

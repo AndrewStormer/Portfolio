@@ -8,15 +8,14 @@
     "allowSyntheticDefaultImports": true,
     "target": "es2017",
     "sourceMap": false,
-    "outDir": "dist",
+    "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
   },
   "include": [
-    "src/*.ts"
+    "*.ts"
   ],
   "exclude": [
     "node_modules",
-    "amplify/backend/function/nestFunction/src/"
   ]
 }

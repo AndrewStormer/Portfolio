@@ -1,40 +1,23 @@
-import { Handler, Context } from "aws-lambda";
-import { Server } from "http";
-import { createServer, proxy } from "aws-serverless-express";
-import { eventContext } from "aws-serverless-express/middleware";
-
 import { NestFactory } from "@nestjs/core";
-import { ExpressAdapter } from "@nestjs/platform-express";
+import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { AppModule } from "./app.module";
 
-const express = require("express");
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    allowedHeaders: ["*"],
+  });
 
-// NOTE: If you get ERR_CONTENT_DECODING_FAILED in your browser, this is likely
-// due to a compressed response (e.g. gzip) which has not been handled correctly
-// by aws-serverless-express and/or API Gateway. Add the necessary MIME types to
-// binaryMimeTypes below
-const binaryMimeTypes: string[] = [];
+  const config = new DocumentBuilder()
+    .setTitle("Portfolio")
+    .setDescription("The API for Andrew Stormer's portfolio")
+    .setVersion("1.0")
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup("api", app, document, {
+    yamlDocumentUrl: "swagger/yaml",
+  });
 
-let cachedServer: Server;
-
-async function bootstrapServer(): Promise<Server> {
-  if (!cachedServer) {
-    const expressApp = express();
-    const nestApp = await NestFactory.create(
-      AppModule,
-      new ExpressAdapter(expressApp)
-    );
-    nestApp.use(eventContext());
-    await nestApp.init();
-    cachedServer = createServer(expressApp, undefined, binaryMimeTypes);
-  }
-  return cachedServer;
+  await app.listen(3001);
 }
-
-export const handler: Handler = async (event: any, context: Context) => {
-  console.log("ENVIRONMENT VARIABLES\n" + JSON.stringify(process.env, null, 2));
-  console.info("EVENT\n" + JSON.stringify(event, null, 2));
-
-  cachedServer = await bootstrapServer();
-  return proxy(cachedServer, event, context, "PROMISE").promise;
-};
+bootstrap();

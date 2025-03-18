@@ -59,6 +59,46 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_nestBackendFunction_dbHost": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "nestBackendFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_nestBackendFunction_dbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "nestBackendFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_nestBackendFunction_dbPassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "nestBackendFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_nestBackendFunction_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "nestBackendFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_nestBackendFunction_dbUsername": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "nestBackendFunction"
+        }
+      ]
+    },
     "AMPLIFY_function_nestBackendFunction_deploymentBucketName": {
       "usedBy": [
         {

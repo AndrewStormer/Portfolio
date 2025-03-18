@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { ConfigModule } from "@nestjs/config";
 import { CourseModule } from "./course/course.module";
 import { Course } from "./course/entitites/course.entity";
 import { Project } from "./project/entities/project.entity";
@@ -13,6 +14,7 @@ import { ProjectReference } from "./project-reference/entities/project-reference
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: "mysql",
       host: process.env.DB_HOST,
@@ -29,7 +31,5 @@ import { ProjectReference } from "./project-reference/entities/project-reference
     ProjectXSkillModule,
     ProjectReferenceModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
