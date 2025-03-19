@@ -33,9 +33,6 @@ async function bootstrapServer(): Promise<Server> {
 }
 
 export const handler: Handler = async (event: any, context: Context) => {
-  // Removed logging of environment variables to avoid exposing sensitive information
-  console.info("EVENT\n" + JSON.stringify(event, null, 2));
-
   cachedServer = await bootstrapServer();
   return proxy(cachedServer, event, context, "PROMISE").promise;
 };
