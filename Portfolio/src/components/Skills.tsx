@@ -32,6 +32,22 @@ export default function Skills() {
         .catch(error => console.error(error))
     }, [])
 
+    const [matches, setMatches] = useState(
+      window.matchMedia("(min-width: 768px)").matches
+    )
+  
+    useEffect(() => {
+      window
+      .matchMedia("(min-width: 768px)")
+      .addEventListener('change', e => setMatches( e.matches ));
+    }, []);
+  
+    const length = ((data as any) as [Skill])?.length;
+    var skillLength = 10;
+    if (matches)
+      skillLength = 16;
+
+
   return (
     <div className='py-4 pb-12 mb-8'>
       <h2 className='pt-4 p-4 text-2xl text-bgpurple-50 font-semibold font-serif'>Technical Skills</h2>
@@ -39,7 +55,7 @@ export default function Skills() {
         <div className='text-lg text-pretty text-bgpurple-10/60 text-center max-w-3xl grid justify-center'>
             {((data as any) as [Skill])
               ?.map(d => d.skill)
-              .slice(0 , (((data as any) as [Skill]).length > 16) ? 16 : undefined)
+              .slice(0 , (length > skillLength) ? skillLength : undefined)
               .join(' - ')}
         </div>
       </div>

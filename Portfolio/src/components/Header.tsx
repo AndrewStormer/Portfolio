@@ -1,7 +1,3 @@
-const GitHub = require('../github_logo.png')
-const LinkedIn = require('../linkedin_logo_header.png')
-
-
 export default function Header() {
 
   return (
@@ -34,7 +30,7 @@ export default function Header() {
             target='_blank'
             rel='noreferrer noopener'
           >
-            <img src={GitHub} alt="GitHub" className="invert opacity-75 hover:text-bgpurple-10/90 hover:opacity-100 w-8" />
+            <img src={process.env.PUBLIC_URL + '/github_logo.png'} alt="GitHub" className="invert opacity-75 hover:text-bgpurple-10/90 hover:opacity-100 w-8" />
           </a>{' '}
           <br />
           <a
@@ -43,7 +39,7 @@ export default function Header() {
             target='_blank'
             rel='noreferrer noopener'
           >
-            <img src={LinkedIn} alt="LinkedIn" className="invert opacity-75 hover:text-bgpurple-10/90 hover:opacity-100 w-8" />
+            <img src={process.env.PUBLIC_URL + '/linkedin_logo_header.png'} alt="LinkedIn" className="invert opacity-75 hover:text-bgpurple-10/90 hover:opacity-100 w-8" />
           </a>{' '}
         </div>
       </div>

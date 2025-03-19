@@ -2,8 +2,6 @@ import { ProjectXSkillDto } from "../pages/Projects";
 
 
 export default function Project({project}) {
-  const video = require(`../${project?.video}`)
-
   return (
     <div className="bg-blend-lighten">
       <div>
@@ -11,7 +9,7 @@ export default function Project({project}) {
         <h2 className='px-4 text-lg font-serif opacity-80'>{project?.status}</h2>
       </div>
       <div className='p-4 md:p-8'>
-        <img src={video} alt={'this is a picture of a project'} className='rounded-2xl mx-auto' />
+        <img src={process.env.PUBLIC_URL + `/${project?.video}`} alt={'this is a picture of a project'} className='rounded-2xl mx-auto' />
       </div>
       <p className="px-4 text-content indent-8 text-pretty text-lg text-bgpurple-10/60">
         {project?.description}
